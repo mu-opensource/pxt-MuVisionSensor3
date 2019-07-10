@@ -17,9 +17,9 @@ namespace MUVisionSensor {
         Serial=0,
     }
     export enum VISION_TYPE {
-        //% block="🌈 Color Detect"
+        //% block="🌈 Color Block"
         VISION_COLOR_DETECT=1,
-        //% block="🌈 Color Recognize"
+        //% block="🌈 Color Recognition"
         VISION_COLOR_RECOGNITION=2,
         //% block="⚽ Ball Detect"
         VISION_BALL_DETECT=3,
@@ -33,7 +33,7 @@ namespace MUVisionSensor {
         VISION_NUM_CARD_DETECT=8
     }
     export enum _VISION_TYPE {
-        //% block="🌈 Color Detect"
+        //% block="🌈 Color Block"
         VISION_COLOR_DETECT=1,
         //% block="⚽ Ball Detect"
         VISION_BALL_DETECT=3,
@@ -63,19 +63,19 @@ namespace MUVisionSensor {
         TRAFFIC_CARD_RIGHT,
         //% block="🔙 Turn Around"
         TRAFFIC_CARD_TURN_AROUND,
-        //% block="🅿️ Stop"
+        //% block="🅿️ Park"
         TRAFFIC_CARD_PARK
     }
     export enum SHAPE_CARD_TYPE {
-        //% block="✔ tick"
+        //% block="✔ Tick"
         SHAPE_CARD_TICK=1,
-        //% block="✖ cross"
+        //% block="✖ Cross"
         SHAPE_CARD_CROSS,
-        //% block="⭕ circle"
+        //% block="⭕ Circle"
         SHAPE_CARD_CIRCLE,
-        //% block="◻ square"
+        //% block="◻ Square"
         SHAPE_CARD_SQUARE,
-        //% block="🛆 triangle"
+        //% block="🛆 Triangle"
         SHAPE_CARD_TRIANGLE
     }
     export enum LED_COLOR_TYPE {
@@ -85,13 +85,13 @@ namespace MUVisionSensor {
         LED_RED,
         //% block="green"
         LED_GREEN,
-        //% block="yellow"
-        LED_YELLOW,
         //% block="blue"
         LED_BLUE,
+        //% block="yellow"
+        LED_YELLOW,
         //% block="purple"
         LED_PURPLE,
-        //% block="cayan"
+        //% block="cyan"
         LED_CYAN,
         //% block="white"
         LED_WHITE
@@ -107,7 +107,7 @@ namespace MUVisionSensor {
         YELLOW,
         //% block="green"
         GREEN,
-        //% block="cayan"
+        //% block="cyan"
         CYAN,
         //% block="blue"
         BLUE,
@@ -181,9 +181,9 @@ namespace MUVisionSensor {
         // BR_921600
     }
     export enum WBMODE {
-        //% block="Auto"
+        //% block="auto"
         WB_AUTO,
-        //% block="Lock"
+        //% block="lock"
         WB_LOCK,
         //% block="white"
         WB_WHITE,
@@ -205,7 +205,7 @@ namespace MUVisionSensor {
     export enum ColorParams {
         //% block="red channel"
         Red_channal=6,
-        //% block="grenn channel"
+        //% block="green channel"
         Green_channal=7,
         //% block="blue channel"
         Blue_channal=8,
@@ -227,22 +227,22 @@ namespace MUVisionSensor {
     }
 
     export enum ENABLES {
-        //% block="Enable"
+        //% block="enable"
         enable=1,
-        //% block="Disable"
+        //% block="disable"
         disable=0
     }
     /**
      * Init the sensor.
      */
-    //% blockId=mu_init block="Init%id|Interface%port"
+    //% blockId=mu_init block="init%id|interface%port"
     //% weight=100 
     //% shim=muvs::begin
     //% group="Settings"
     export function begin(id:SENSORS,port:PORT){
         return
     }
-    //% blockId=MU_reset block="%id|Reset to Default"
+    //% blockId=MU_reset block="%id|restore default settings"
     //% weight=99
     //% shim=muvs::reset
     //% group="Settings"
@@ -250,7 +250,7 @@ namespace MUVisionSensor {
         return
     }
     
-    //% blockId=MU_set_led block="%id|LED %led|when detect %detected_color|when undetect %undetected_color"
+    //% blockId=MU_set_led block="%id|LED %led|when detected %detected_color|when undetected %undetected_color"
     //% level.defl=1 level.min=0 level.max=15
     //% weight=98 inlineInputMode=inline
     //% shim=muvs::set_led
@@ -259,21 +259,21 @@ namespace MUVisionSensor {
         return
     }
     
-    //% blockId=MU_VisionBegin block="%id|%enable|Algorithm%type"
+    //% blockId=MU_VisionBegin block="%id|%enable|algorithm%type"
     //% weight=97
     //% shim=muvs::VisionBegin
     //% group="Settings"
     export function VisionBegin(id:SENSORS,enable:ENABLES,type:VISION_TYPE) {
         return
     }
-    //% blockId=MU_set_level block="%id|Set Algorithm%VISION_TYPE|Level%level"
+    //% blockId=MU_set_level block="%id|algorithm%VISION_TYPE|Level%level"
     //% weight=96
     //% shim=muvs::set_level
     //% group="Settings" advanced=true
     export function set_level(id:SENSORS,type:VISION_TYPE,level:VisionLevel) {
         return 
     }
-    //% blockId=MU_set_zoom block="%id|Digital Zoom%level"
+    //% blockId=MU_set_zoom block="%id|digital zoom%level"
     //% weight=95
     //% shim=muvs::set_zoom
     //% group="Settings" advanced=true
@@ -281,7 +281,7 @@ namespace MUVisionSensor {
         return 
     }
 
-    //% blockId=MU_set_baudrate block="%id|Set Baudrate%baud"
+    //% blockId=MU_set_baudrate block="%id|baudrate%baud"
     //% weight=94 inlineInputMode=inline
     //% shim=muvs::set_baudrate
     //% group="Settings" advanced=true
@@ -289,68 +289,69 @@ namespace MUVisionSensor {
     export function set_baudrate(id:SENSORS,baud:BaudRate) {
         return 
     }
-    //% blockId=MU_set_awb block="%id|Set white balance%level"
+    //% blockId=MU_set_awb block="%id|white balance%level"
     //% weight=93
     //% shim=muvs::set_WB
     //% group="Settings" advanced=true
     export function set_WB(id:SENSORS,level:WBMODE) {
         return 
     }
-    //% block="%id|High FPS mode$on"
+    //% block="%id|high FPS mode$on"
     //% shim=muvs::onOff
     //% on.shadow="toggleOnOff" group="Settings" advanced=true
     export function onOff(id:SENSORS,on: boolean) {
         return 
     }
-    //% block="%id|Is detected%type" color="#2E8B57"
+    //% block="%id|is detected%type" color="#2E8B57"
     //% shim=muvs::detected
     //% group="Functions"
     export function detected(id:SENSORS,type:VISION_TYPE):boolean{
         return true
     }
-    //% block="%id|Is detected 🌈 Color Recognize x=%x|y=%y" color="#2E8B57"
+    //% block="%id|is detected 🌈 Color Recognition x%x|y%y" color="#2E8B57"
     //% shim=muvs::MuVs2GetColorRCGLabel
     //% group="Functions"
     export function MuVs2GetColorRCGLabel(id:SENSORS,x:number,y:number):boolean{
         return true
     }
-    //% block="%id|Is detected 🌈 Color Detect Color=%color" color="#2E8B57"
+    //% block="%id|is detected 🌈 Color Block color%color" color="#2E8B57"
     //% shim=muvs::MuVs2GetColorDetectLabel
     //% group="Functions"
     export function MuVs2GetColorDetectLabel(id:SENSORS,label:COLOR_TYPE):boolean{
         return true
     }
-    //% block="Get%id|Algorithm%type|%item" color="#2E8B57"
+    //% block="get%id|%type|%item" color="#2E8B57"
     //% shim=muvs::get_value
     //% group="Functions"
     export function get_value(id:SENSORS,type:_VISION_TYPE,item:Params):number{
         return 0
     }
-    //% block="Get%id|🌈 Color Recognize|%item" color="#2E8B57"
+    //% block="get%id|🌈 Color Recognition|%item" color="#2E8B57"
     //% shim=muvs::get_color_value
     //% group="Functions"
     export function get_color_value(id:SENSORS,item:ColorParams):number{
         return 0
     }
-    //% block="Get%id|🔳 Shape Card =%type" color="#2E8B57"
+    //% block="%id|get 🔳 Shape Card =%type" color="#2E8B57"
     //% shim=muvs::get_shape_card_type
     //% group="Functions"
     export function get_shape_card_type(id:SENSORS,type:SHAPE_CARD_TYPE):boolean{
         return true
     }
-    //% block="Get%id|🔳 Traffic Card =%type" color="#2E8B57"
+    //% block="%id|get 🔳 Traffic Card =%type" color="#2E8B57"
+
     //% shim=muvs::get_traffic_card_type
     //% group="Functions"
     export function get_traffic_card_type(id:SENSORS,type:TRAFFIC_CARD_TYPE):boolean{
         return true
     }
-    //% block="Get%id|🔳 Number Card =%type" color="#2E8B57"
+    //% block="%id|get 🔳 Number Card =%type" color="#2E8B57"
     //% shim=muvs::get_number_card_type
     //% group="Functions"
     export function get_number_card_type(id:SENSORS,type:NUM_CARD_TYPE):boolean{
         return true
     }
-    //% block="Get%id|Algorithm 🌈 Color Recognize color =%color" color="#2E8B57"
+    //% block="%id|get 🌈 Color Recognition color =%color" color="#2E8B57"
     //% shim=muvs::get_color_recognize
     //% group="Functions"
     export function get_color_recognize(id:SENSORS,color:COLOR_TYPE):boolean{
